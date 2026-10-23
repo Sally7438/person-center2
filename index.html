@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>當事人中心治療法 互動電子書</title>
+<style>
+:root{--bg:#faf6ef;--fg:#2d2a26;--card:#fff;--ac:#c0704a;--ac2:#6d8b6a;--bd:#e4d9c8;--ok:#2e7d4f;--no:#b23a3a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1b19;--fg:#ece6dc;--card:#2a2724;--ac:#e08f68;--ac2:#8fb08c;--bd:#403b35;--ok:#6fd49a;--no:#f08a8a}}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.75 "Noto Sans TC",system-ui,sans-serif;max-width:860px;margin:auto;padding:16px}
+h1{font-size:1.35rem;margin:.2em 0}h2{font-size:1.1rem;color:var(--ac);margin:1.2em 0 .4em}
+.sub{opacity:.7;font-size:.9rem}
+.bar{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0;overflow-x:auto}
+button{font:inherit;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:10px;padding:6px 14px;cursor:pointer}
+button.on{background:var(--ac);color:#fff;border-color:var(--ac)}button:disabled{opacity:.4;cursor:default}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px 16px;margin:10px 0}
+.ex{border-left:4px solid var(--ac2);background:color-mix(in srgb,var(--ac2) 12%,transparent);padding:8px 12px;border-radius:0 10px 10px 0;margin-top:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.fc{min-height:130px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.fc b{font-size:1.1rem}.ipa{color:var(--ac);font-family:system-ui;font-size:.95rem}.def{font-size:.88rem;margin:6px 0;line-height:1.6}.vw{border-bottom:1px dashed var(--ac);cursor:pointer;color:var(--ac)}.vw.open::after{content:' (' attr(data-t) ')';color:var(--ac2);font-size:.85em}.ps{font-size:1.02rem;line-height:2.1}
+.opt{display:block;width:100%;text-align:left;margin:6px 0}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,transparent)}
+.opt.no{border-color:var(--no);background:color-mix(in srgb,var(--no) 18%,transparent)}
+.exp{display:none;margin-top:6px;font-size:.93rem}.show{display:block}
+</style></head><body>
+<h1>當事人中心治療法：成為如其所是的自我</h1>
+<div class="sub">互動電子書｜講義：陳妙華 博士／諮商心理師（2026）</div>
+<div class="bar" id="units"></div>
+<div class="bar" id="tabs"></div>
+<div id="view"></div>
+<script>
+const U=[{t:"單元1 人本主義與Rogers",
+slides:[
+["心理學三大勢力","第一勢力是精神分析，第二勢力是行為主義，第三勢力是人本主義，Rogers 為代表人物。人本主義相信人有向上成長的力量。","例：學生考前焦慮。精神分析會探索童年經驗；行為主義會用系統減敏降低反應；人本主義則先問「你現在的感受是什麼？」"],
+["橡實的比喻","人就像橡實，天生帶有朝向健康、獨立、充分發展的傾向。只要環境不阻擋，成長會自然發生，不需要被指揮。","例：你不會教橡實怎麼長成樹，只需提供土壤、陽光與水。諮商關係就是那片土壤。"],
+["Rogers 的成長背景","1902年生於芝加哥伊利諾州郊區，排行第四，家人是虔誠基督徒。12歲全家搬到芝加哥西郊農場，大量閱讀農耕書籍，喚起對科學的興趣。進入威斯康辛大學讀農學，大二轉往神學院；大三到北京參加國際基督徒學生會議，人生哲學與宗教觀轉變。後進入哥倫比亞教育學院攻讀臨床與教育心理學，1931年取得博士，進入紐約 Rochester 防治兒童虐待協會工作。","例：農場經驗讓他看見「條件對了，植物自己會長」，這個想法後來延伸為對人的信任。"],
+["專業觀點的轉變","從「我怎樣能處理、治療或改變這個人？」轉為「我怎樣能提供一種關係，使這個人能用之於他自己的成長？」重點從技術轉向關係。","例：家長說「請你把他矯正好」。舊觀點是想辦法改他；新觀點是先成為一個孩子敢說真話的安全對象。"],
+["理論發展四階段","1940年代：非指導性治療 (nondirective therapy)；1950年代：當事人中心治療 (client-centered therapy)；1950年代晚期至1970年代：充分必要條件；1980–1990年代：個人中心治療 (person-centered therapy)。","記憶法：「非指導 → 當事人 → 條件 → 個人」，名稱逐步從技術走向整個人。"]],
+cards:[["人本主義","Humanistic psychology","/hjuːˈmænɪstɪk saɪˈkɑːlədʒi/"],["行為主義","Behaviorism","/bɪˈheɪvjərɪzəm/"],["非指導性治療","Nondirective therapy","/ˌnɑːndəˈrektɪv ˈθerəpi/"],["當事人中心治療","Client-centered therapy","/ˈklaɪənt ˈsentərd ˈθerəpi/"],["個人中心治療","Person-centered therapy","/ˈpɜːrsn ˈsentərd ˈθerəpi/"],["自我實現傾向","Actualizing tendency","/ˈæktʃuəlaɪzɪŋ ˈtendənsi/"],["充分發揮功能的人","Fully functioning person","/ˈfʊli ˈfʌŋkʃənɪŋ ˈpɜːrsn/"]],
+mcq:[
+["人本主義被稱為心理學的第幾勢力？",["第一","第二","第三","第四"],2,"精神分析為第一、行為主義為第二、人本主義為第三勢力。"],
+["橡實比喻要說明什麼？",["成長必須嚴格指導","人天生有成長傾向，環境不阻擋即會發生","行為由獎懲決定","童年經驗決定一切"],1,"橡實自然長成大樹，象徵自我實現的傾向。"],
+["Rogers 出生於何處？",["芝加哥伊利諾州郊區","紐約","北京","威斯康辛"],0,"1902年生於芝加哥郊區，排行第四。"],
+["Rogers 進入威斯康辛大學時最初就讀？",["神學","農學","醫學","教育"],1,"先讀農學，大二轉往神學院。"],
+["大三赴北京參加國際基督徒學生會議，使他？",["放棄學業","改學物理","人生哲學與宗教觀轉變","加入軍隊"],2,"該會議使其宗教觀與人生哲學轉變。"],
+["Rogers 於哥倫比亞教育學院攻讀的領域是？",["臨床與教育心理學","精神醫學","實驗心理學","社會學"],0,"1931年取得博士學位。"],
+["1931年取得博士後，他首先任職於？",["Rochester 防治兒童虐待協會","哥倫比亞大學","芝加哥大學","神學院"],0,"進入紐約 Rochester 防治兒童虐待協會工作。"],
+["下列何者是 Rogers 轉變後的核心提問？",["我怎樣能診斷這個人？","我怎樣能改變這個人？","我怎樣能提供一種關係，讓這個人運用於自己的成長？","我怎樣讓他服從？"],2,"重點由「處理人」轉為「提供關係」。"],
+["1940年代的理論名稱是？",["非指導性治療","當事人中心治療","個人中心治療","充分必要條件"],0,"1940年代為 nondirective therapy。"],
+["理論發展的正確順序是？",["個人中心→非指導→當事人中心→充分必要條件","非指導→當事人中心→充分必要條件→個人中心","當事人中心→個人中心→非指導→充分必要條件","充分必要條件→非指導→個人中心→當事人中心"],1,"1940s非指導 → 1950s當事人中心 → 1950s晚期至1970s充分必要條件 → 1980–90s個人中心。"]],
+sc:{q:"新手諮商員小安接到國中生阿哲的個案。母親說：「他很懶惰，請你把他改好。」小安腦中浮現的是「我要怎麼矯正他？」依 Rogers 的觀點轉變，小安最佳的做法是？",
+o:["設計獎懲計畫，盡快改變他的行為","先診斷問題，再給阿哲具體建議","思考如何提供安全、真誠、接納的關係，讓阿哲能把它用於自己的成長","請母親與阿哲簽訂改善契約"],a:2,
+e:"最佳解答是 C。Rogers 的轉變是從「我如何改變這個人」到「我如何提供一種關係，使這個人能用之於自己的成長」。A、B、D 都由助人者主導改變，與信任當事人自我實現傾向的立場不符。"}},
+{t:"單元2 人性觀與不一致",
+slides:[
+["自我實現的傾向","Rogers 認為人基本上朝向積極的方向。生命的終極目標是成為充分發揮功能的人。只要提供促進成長的適當條件，當事人就會發展出朝向建設性成長的能力。","例：小華被霸凌後不敢上學。諮商員不替他決定，只營造安全的關係，後來他自己慢慢說出「我想回到班上」。"],
+["治療者需具備的三種特質","(1) 一致性或真誠；(2) 無條件的正向關懷；(3) 正確同理性的了解。這三者是促進成長的條件，單元3會詳細說明。","例：一致是不假裝，無條件關懷是接納你本來的樣子，同理是進入你的世界去感受。"],
+["人為什麼會產生心理困擾？","「不適應」產生於內外不一致、失去真實的時候。自我概念（社會面具／理想）與真實經驗（當下真實感受）出現落差，人就會痛苦。","例：小美總說「我不在意」，其實被朋友忽略時很受傷。她呈現的是面具，感受卻是真實經驗。"],
+["核心病理機制：不一致 (Incongruence)","落差即痛苦：落差越大，行為越不統整。焦慮是警報，不是敵人：提醒你正在用的面具已無法涵蓋真實經驗。防衛機制啟動：不符合自我概念的經驗會被扭曲（合理化）或否認，因此無法被正確象徵。","例：考差的人說「那科本來就沒用」是合理化；說「我根本不在乎成績」是否認。"],
+["治療目標：收回評價的中心","目標不是解決眼前的單一問題，而是協助一個人長出完整的整合能力：對經驗開放（放下防衛）、信任自己（把評價中心收回自己身上）、自我指導（願意為生活負責，具備創造力與彈性）。具體往哪走，永遠由當事人決定。","例：從「媽媽會怎麼想？」變成「我自己覺得這樣適合我嗎？」"],
+["成為一個人 (On Becoming a Person)","Rogers 寫道：當我能接納地聽自己、做自己時，我才是有效的治療者；我愈願意成為自己，就愈樂意允許你成為你自己；別人對我的評價不能引導我；人的生命是流動、變動的過程，沒有什麼是固著不變的。","例：老師坦承「這題我也要查一下」，不假裝全知，學生反而更敢發問。"]],
+cards:[["不一致","Incongruence","/ˌɪnkənˈɡruːəns/"],["一致性","Congruence","/kənˈɡruːəns/"],["自我概念","Self-concept","/self ˈkɑːnsept/"],["焦慮","Anxiety","/æŋˈzaɪəti/"],["防衛機制","Defense mechanism","/dɪˈfens ˈmekənɪzəm/"],["扭曲","Distortion","/dɪˈstɔːrʃn/"],["合理化","Rationalization","/ˌræʃnələˈzeɪʃn/"],["否認","Denial","/dɪˈnaɪəl/"],["評價的中心","Locus of evaluation","/ˈloʊkaɪ əv ɪˌvæljuˈeɪʃn/"],["對經驗開放","Openness to experience","/ˈoʊpənnəs tu ɪkˈspɪriəns/"]],
+mcq:[
+["Rogers 對人性的基本看法是？",["消極被動","基本上朝向積極的方向","中性，由環境塑造","由本能衝動驅動"],1,"人都具有基本上朝向積極的方向。"],
+["生命的終極目標是？",["消除所有症狀","成為充分發揮功能的人","符合社會期待","獲得他人認可"],1,"終極目標是成為一個充分發揮功能的人。"],
+["下列何者不是治療者需具備的特質？",["一致性或真誠","無條件的正向關懷","正確同理性的了解","權威式的診斷"],3,"三種特質為一致、無條件正向關懷、正確同理性的了解。"],
+["心理困擾（不適應）主要產生於？",["內外不一致、失去真實","缺乏外在獎勵","智力不足","環境太安靜"],0,"當內外不一致、失去真實時，便產生不適應。"],
+["「不一致」指哪兩者之間的落差？",["自我概念與真實經驗","過去與未來","思考與記憶","父母與子女"],0,"自我概念（面具／理想）與真實經驗（當下感受）的落差。"],
+["講義中「自我概念」對應的是？",["當下真實感受","社會面具／理想","治療技術","防衛機制"],1,"自我概念＝社會面具／理想；真實經驗＝當下真實感受。"],
+["在 Rogers 的觀點中，焦慮是？",["必須立刻消除的敵人","警報，提醒面具已無法涵蓋真實經驗","毫無意義的症狀","治療者的失誤"],1,"焦慮在提醒你：正在用的那套面具已經無法涵蓋真實的生活經驗。"],
+["考差後說「我根本不在乎成績」，屬於哪種防衛？",["否認","自我指導","一致","對經驗開放"],0,"為了維持自我概念，否認了真實的在乎。"],
+["「收回評價的中心」是指？",["把評價標準交給治療者","不再依賴外界標準，把評價中心收回自己身上","完全不在意他人","停止思考"],1,"也就是信任自己，不再靠外界標準。"],
+["下列何者不是治療目標的面向？",["對經驗開放","信任自己","自我指導","服從權威"],3,"三個面向為對經驗開放、信任自己、自我指導。"]],
+sc:{q:"大一的小美對諮商員說：「我真的不在意朋友聚會沒找我，沒什麼啦。」但她說話時聲音微微發抖、眼眶泛紅。依「不一致」的概念，諮商員最佳的回應是？",
+o:["「別想太多，換個角度想就好了。」","「你為什麼要這樣想？不在意不就好了嗎？」","「你說不在意，可是我感覺這件事好像讓你有些受傷，是這樣嗎？」","「你這是在否認，你其實很在意。」"],a:2,
+e:"最佳解答是 C。小美的面具（不在意）與真實經驗（受傷）有落差。C 不評價、不下定論，溫和邀請她接觸真實感受。A、B 屬講義中的「安慰人雷區」；D 武斷貼標籤，替當事人下結論，會讓她更想防衛。"}},
+{t:"單元3 三大核心態度",
+slides:[
+["核心概念總覽","Rogers 認為助人者需具備三種核心態度：一致性／真誠 (congruence)、無條件正向關懷 (unconditional positive regard)、正確同理性的了解 (accurate empathic understanding)。三者像土壤，提供當事人成長的環境。","例：一位老師若只會講道理（缺同理）、嘴上說接納卻臉色不耐（缺一致）、只在學生表現好時才讚美（缺無條件），學生都很難真正打開心。"],
+["態度一：一致與真誠 (Congruence / Genuineness)","治療師內在的真實體驗與外在表現一致，不掩飾、不裝模作樣。真誠是另外兩個態度的「地基」。溫馨提示：適度的自我揭露是允許的，但必須以「對當事人有實質幫助」為唯一考量。","例：諮商員發現自己剛剛分心，與其假裝一直專心，可以說：「我剛才有點跟不上，想確認我有沒有聽懂你的意思。」這是為了當事人，而非宣洩自己。"],
+["態度二：無條件的正向關懷 (UPR)","「照你現在的樣子接納你」，以無占有性的態度接納當事人，不帶評價，亦不求回報。重點在區分：接納 (acceptance) 是理解並看見你的感受與存在價值；認同 (agreement) 是同意你的每一個觀點與行為。UPR 要的是接納，不是認同。","例：學生說「我想報復那個同學」。接納他的憤怒與受傷，不代表認同報復的行為；你可以說：「你被傷得很深，真的很生氣。」"],
+["態度三：正確同理性的了解","深入當事人的「內在參考架構」與主觀世界去體會其感受，並維持「as if」狀態：好像自己是對方一樣去感受，但沒有失去「好像」的特質，仍保有自己。","例：當事人說「我在公司像透明人」。你不是去想「如果是我會怎樣」，而是用他的世界去理解：「被忽略的感覺，讓你覺得自己不被需要？」"],
+["三種同理形式","講義列出三種同理：1. 主觀式同理、2. 人際式同理、3. 客觀式同理。（講義僅列名稱，以下為常見教科書的補充理解，細節請以課堂說明為準。）主觀式：以自己的經驗與感受去推想對方；人際式：站在對方的位置，理解其感受並回應；客觀式：運用外在資訊或理論作較客觀的理解。","例：朋友失業。主觀式像是「我若失業一定很慌」；人際式是「你一定擔心家計，也覺得失落」；客觀式是「失業常伴隨壓力反應」。"],
+["同理 ≠ 同情","同理的關鍵在於保持獨立客觀，不丟失自我（維持「as if」狀態）。同情是為對方感到難過，同理則是進入對方的世界後仍站穩自己。講義並以影片「同理心 vs 同情心」對照說明。","例：同情：「你好可憐。」同理：「你一定很擔心之後的日子，又覺得自己的努力被否定了。」"]],
+cards:[["真誠","Genuineness","/ˈdʒenjuɪnnəs/"],["無條件正向關懷","Unconditional positive regard","/ˌʌnkənˈdɪʃənl ˈpɑːzətɪv rɪˈɡɑːrd/"],["接納","Acceptance","/əkˈseptəns/"],["認同","Agreement","/əˈɡriːmənt/"],["正確同理性的了解","Accurate empathic understanding","/ˈækjərət emˈpæθɪk ˌʌndərˈstændɪŋ/"],["同理心","Empathy","/ˈempəθi/"],["同情心","Sympathy","/ˈsɪmpəθi/"],["內在參考架構","Internal frame of reference","/ɪnˈtɜːrnl freɪm əv ˈrefrəns/"],["「如同」狀態","As if quality","/æz ɪf ˈkwɑːləti/"],["自我揭露","Self-disclosure","/self dɪsˈkloʊʒər/"]],
+mcq:[
+["下列何者不是 Rogers 的三種核心態度？",["一致性／真誠","無條件的正向關懷","正確同理性的了解","專業權威"],3,"三種核心態度為一致、無條件正向關懷、正確同理性的了解。"],
+["哪一個態度被稱為另外兩個態度的「地基」？",["同理","一致與真誠","無條件正向關懷","接納"],1,"真誠是另外兩個態度的地基；缺乏真誠，接納與同理都會顯得虛假。"],
+["一致性 (congruence) 指的是？",["外在表現優先於內在感受","內在真實體驗與外在表現一致","完全不表達任何感受","與當事人意見一致"],1,"一致是不掩飾、不裝模作樣，內外相符。"],
+["關於治療師的自我揭露，講義的提醒是？",["完全不可以","越多越好","可適度，但必須以對當事人有實質幫助為唯一考量","用來宣洩治療師情緒"],2,"適度自我揭露是允許的，前提是對當事人有實質幫助。"],
+["無條件正向關懷的精神最接近？",["表現好才給予肯定","照你現在的樣子接納你，不帶評價、不求回報","同意當事人所有想法","替當事人做決定"],1,"以無占有性的態度接納，不帶評價，亦不求回報。"],
+["接納 (acceptance) 與認同 (agreement) 的差別為何？",["兩者相同","接納是看見並理解感受與價值；認同是同意每個觀點與行為","接納必須同意對方的行為","認同才是 UPR 的要求"],1,"UPR 要求接納，不要求認同。"],
+["當事人說想報復同學，運用 UPR 較合適的是？",["指責其想法不對","接納其憤怒與受傷的感受，不必認同報復行為","附和並支持報復","立刻轉移話題"],1,"接納感受與認同行為是兩回事。"],
+["「內在參考架構」指的是？",["治療師的理論架構","當事人的主觀世界與看事情的角度","諮商室的空間配置","測驗常模"],1,"同理是深入當事人的內在參考架構與主觀世界。"],
+["維持「as if」狀態意謂著？",["完全融入對方情緒、失去自己","能體會對方感受，同時保有自己的獨立性","只做客觀觀察，不帶感受","假裝同理"],1,"好像自己是對方，但不失去「好像」的特質。"],
+["關於同理與同情，下列何者正確？",["兩者相同","同理的關鍵是保持獨立客觀，不丟失自我","同情比同理更專業","同理就是替對方難過"],1,"講義指出：同理 ≠ 同情。"]],
+sc:{q:"大學生阿凱對諮商員說：「我考試作弊被抓到，我覺得自己超爛的，也不想被別人知道。」諮商員心裡其實不認同作弊。依三種核心態度，最佳回應是？",
+o:["「作弊是不對的，你應該先去自首。」","「聽起來你很自責，也很害怕被別人知道。我會在這裡聽你說，不會因為這件事評價你。」","「別難過，大家都有犯錯的時候，沒關係啦。」","「我完全認同你，作弊其實沒什麼。」"],a:1,
+e:"最佳解答是 B。B 同理了阿凱的感受（自責、害怕）與理由，並以不評價的態度接納「人」；同時諮商員沒有假裝認同作弊，維持真誠。A 是評價與指導；C 屬輕描淡寫的安慰，忽略感受；D 把接納誤當成認同，違反一致與真誠。"}},
+{t:"單元4 同理心實踐",
+slides:[
+["同理心練習四步驟","講義列出同理心練習的四個步驟：1. 開放姿勢、2. 簡述語意、3. 情感反映、4. 同理心。前三步是基本功，整合起來就成為同理心。","例：學生低著頭說「我今天又跟媽媽吵架了」。先面向他、身體微微前傾（開放姿勢），再簡述「你今天跟媽媽起了衝突」，接著反映「聽起來你很難過」。"],
+["簡述語意","用自己的話，簡要敘述來談者的談話內容。目的：(1) 讓來談者知道我們正在認真瞭解他所說的；(2) 核對我們所理解的是對方所欲傳達的意思；(3) 聚焦於一個特定的情境、事件、想法或行為上。注意事項：不要講得比來談者的話還長；等個案講到一個段落，趁機回應。","例：來談者講了三分鐘工作壓力。你說：「所以你這個月同時接了三個案子，主管又臨時加了會議。」短短一句，就能讓他確認「你有聽懂」。"],
+["安慰人雷區","講義列出四類常見但無效的回應：(1) 質問與建議：「你為什麼要這樣想？你不要XXX不就可以ooo了嗎？」(2) 否定情緒：「不要想那麼多、不要難過啦…」(3) 簡化歸因：「你之所以每天忍不住傷心，就是因為不夠忙」(4) 比較苦難：「這算什麼？上次我比你倒楣多了……」","改寫：把「不要難過啦」改成「聽起來這件事讓你很難過。」前者要對方停止感受，後者先看見感受。"],
+["情感反映","情感反映句型：「聽起來…＋事件＋情緒字眼」，或「你覺得（情緒）＋事件」。例句：「聽起來，他這樣的行為，讓你很憤怒。」「你覺得自己很糟糕。」「似乎你感到左右為難，不知道該站在哪一邊。」講義附有情緒語詞列表，如：憤怒、生氣、委屈、疲憊、焦慮、無奈、沮喪、無力、孤單、受傷、悲傷、失望、矛盾、興奮、安心、感激等。","練習：來談者說「我才和媽媽吵了一架，她說我懶惰所以永遠不會成功。為什麼她不能像我朋友的媽媽一樣支持我？」回應：「你對媽媽充滿憤怒」「你覺得很受傷，因為媽媽的不信任」。"],
+["同理心 = 簡述語意 + 情感反映","初層次同理心包含四種內容：同理來談者的內容（你剛剛說的是…；你是說…）、感受（你覺得……；你感到……）、理由（你覺得……因為；因為……所以你認為……）、意義（你的意思是……；你認為……）。","例：「你是說（內容）自己被同事忽略，覺得（感受）很失落，因為（理由）你一直很努力，你認為（意義）自己不被需要。」"],
+["同理心的四個層次","第一級「雞同鴨講」：完全無視對方表達的內容與感受。第二級「表面功夫」：聽到內容，但忽略感受。第三級「有一點感動」：理解內容也理解感受並回饋。第四級「包含所有資訊」：整合語言、表情、語氣、姿勢等訊息後再回應，除了同理，還能幫助對方更瞭解自己。","記憶法：一級沒在聽、二級只聽事、三級聽事也聽心、四級整合全部並促進自我了解。"],
+["四層次對照練習","個案說：「唉！我什麼事都作不成。我拼命的幹，結果還是一無所獲，已經白混了兩個月了。」第一級：「嘿！今天真有意思！你知不知道統一獅輸了？」（根本沒聽）第二級：「我也發現到你什麼事都沒有做成。」（只有內容）第三級：「你一定很煩，因為你覺得一事無成。」（內容加感受）第四級：「你一定覺得壓力很大，好像註定要失敗，而且把壓力壓在自己身上，讓自己覺得不如人。」（整合並深化）","自我檢查：你最近一次回應別人時，大約落在第幾級？"]],
+cards:[["開放姿勢","Open posture","/ˈoʊpən ˈpɑːstʃər/"],["簡述語意","Paraphrasing","/ˈpærəfreɪzɪŋ/"],["情感反映","Reflection of feeling","/rɪˈflekʃn əv ˈfiːlɪŋ/"],["情緒語詞","Emotion words","/ɪˈmoʊʃn wɜːrdz/"],["初層次同理心","Primary-level empathy","/ˈpraɪmeri ˈlevl ˈempəθi/"],["內容","Content","/ˈkɑːntent/"],["感受","Feeling","/ˈfiːlɪŋ/"],["理由","Reason","/ˈriːzn/"],["意義","Meaning","/ˈmiːnɪŋ/"],["安慰","Reassurance","/ˌriːəˈʃʊrəns/"]],
+mcq:[
+["同理心練習的四個步驟，順序為何？",["開放姿勢→簡述語意→情感反映→同理心","情感反映→開放姿勢→同理心→簡述語意","簡述語意→同理心→開放姿勢→情感反映","同理心→簡述語意→情感反映→開放姿勢"],0,"講義順序：開放姿勢、簡述語意、情感反映、同理心。"],
+["簡述語意是指？",["用自己的話簡要敘述來談者的談話內容","逐字重複來談者的話","提供解決方法","解釋來談者的行為原因"],0,"重點是用自己的話、簡要地敘述談話內容。"],
+["下列何者不是簡述語意的目的？",["讓來談者知道我們正在認真瞭解","核對理解是否為對方所欲傳達的意思","聚焦於特定情境、事件、想法或行為","給予具體的解決建議"],3,"簡述語意不是給建議，而是確認理解與聚焦。"],
+["簡述語意的注意事項是？",["可以比來談者說得更長","等個案講到一個段落，趁機回應","隨時打斷以確認","加入自己的評價"],1,"不要講得比來談者的話還長，並等段落處回應。"],
+["「不要想那麼多、不要難過啦」屬於？",["有效的情感反映","安慰人雷區","簡述語意","第四級同理"],1,"這類回應要求對方停止感受，是講義的安慰人雷區。"],
+["情感反映的句型為何？",["聽起來…＋事件＋情緒字眼","你應該…＋建議","為什麼…＋質問","我以前也…＋自己的經驗"],0,"例如「聽起來，他這樣的行為，讓你很憤怒。」"],
+["下列何者是情感反映？",["你不要想那麼多","你覺得很受傷，因為媽媽的不信任","為什麼你不跟媽媽好好說？","我媽也常這樣"],1,"B 說出情緒（受傷）與原因（不信任）。"],
+["講義中，同理心等於？",["簡述語意＋情感反映","建議＋安慰","詢問＋解釋","同意＋鼓勵"],0,"同理心＝簡述語意＋情感反映。"],
+["句型「你覺得……因為……」是在同理來談者的哪一部分？",["內容","感受","理由","意義"],2,"「你覺得……因為；因為……所以你認為……」是同理理由。"],
+["「聽到對方語言表達的內容，卻忽略感受」是第幾級同理？",["第一級","第二級","第三級","第四級"],1,"第二級「表面功夫」只聽到內容。"]],
+sc:{q:"高二的小宇說：「期中考我準備了好幾週，成績出來卻比上次還差，我媽還說我不夠認真。我真的不知道還能怎麼辦。」下列哪一個回應的同理層次最高？",
+o:["「別想那麼多，下次再努力就好了。」","「你是說，你準備很久成績卻退步，媽媽又說你不夠認真。」","「你一定很委屈又很挫折，因為你很努力卻沒有得到肯定，現在也有點不知所措。」","「我高中時考更差，你這算什麼。」"],a:2,
+e:"最佳解答是 C。C 同時回應內容（努力卻退步）、感受（委屈、挫折、不知所措）與理由（沒有得到肯定），並整合成一句話，屬第三級以上。B 只有簡述語意（第二級）；A 是安慰人雷區，否定情緒並急著給方向；D 是比較苦難，把焦點拉回自己，接近第一級。"}},
+{t:"單元5 改變歷程",
+slides:[
+["改變的氣候：六個充分必要條件","Rogers (1957) 提出：只要下列六個條件持續存在一段時間，建設性的人格改變「必然」發生。(1) 兩個人有心理上的接觸；(2) 當事人處在不一致或焦慮的狀態；(3) 治療師在關係中是一致的；(4) 治療師能表達對當事人無條件的正向關懷；(5) 治療師體驗並傳達對個案內在參考架構的同理性理解；(6) 當事人感知到治療師的無條件正向關懷與同理理解。","例：高中生小凱被老師帶來諮商室。若他全程不看你（缺條件1），或覺得你只是在完成任務（缺條件6），再好的技巧也不會讓他改變。"],
+["六個條件如何運作","可分成三組：關係與狀態（條件1、2：雙方有心理接觸、當事人處於不一致與焦慮）；治療師給予（條件3、4、5：一致、無條件正向關懷、同理）；當事人接收（條件6：當事人成功感受到這份同理與關懷）。治療師的三個核心態度，必須被當事人「感受到」才算數。","例：你心裡很接納他，但語氣急促、一直看錶。小凱感受到的是被催促，條件6就沒有成立。"],
+["找到自己的三個階段","講義列出三個階段：1. 願意穿透假面具；2. 對感覺體驗；3. 在體驗中發現自我。這與單元2的假面具（自我概念）與真實經驗的落差相呼應：先放下面具，再接觸感受，最後在感受中找到真實的自己。","例：一個總是說「我沒事」的人，先能對信任的人說出「其實我有點累」（穿透面具），接著去感受累裡面的委屈，最後發現自己一直在討好別人。"],
+["個人中心治療歷程的七個階段（上）","依 Rogers (1961)。第一階段「僵化與封閉」：不願談論自己，否認或無法察覺感受。第二階段「開始有限度表達」：稍微願意表達，但主要談外在事件，仍把問題歸因於外界。第三階段「開始談論自我」：能描述過去感受，但把感受當成客體，難以直接經驗當下情緒。第四階段「情緒與自我概念逐漸鬆動」：開始接近當下感受，察覺內在矛盾，質疑原有信念，萌生自我責任感。","當事人說法：一「我沒什麼問題，都是別人有問題。」二「都是主管要求太多，才讓我這麼痛苦。」三「以前我總是很害怕別人不喜歡我。」四「我好像一直覺得自己不值得被愛，也許這只是我的想法。」"],
+["個人中心治療歷程的七個階段（下）","第五階段「更能直接表達當下感受」：情緒表達更自由，逐漸承認感受屬於自己。第六階段「充分而直接地經驗情緒」：過去被壓抑的感受能在當下被充分經驗和接納，自我與經驗更趨一致。第七階段「開放、流動與持續成長」：能信任自己的經驗，彈性調整自我概念，自主選擇並持續成長。","當事人說法：五「我現在真的很難過，也發現自己很怕被拒絕。」六「此刻我感覺到自己的悲傷，也能允許自己有這種感受。」七「我可以接納自己的感受，也相信自己能因應新的經驗而改變。」"],
+["美好人生的特徵與全景藍圖","美好人生是一個過程，其特徵是：對體驗益發的開放、更為實存的生活、益發信賴自身的反應。全景藍圖把整個架構串起來：底層是 3 個核心態度（環境土壤），中間是 6 個充分必要條件（催化機制），內圈是 7 個歷程階段（當事人成長軌跡），外圈是 4 個發展階段（理論的時間維度）。","記憶法：土壤（3態度）→ 催化（6條件）→ 成長（7階段）→ 理論演進（4階段）。"]],
+cards:[["充分必要條件","Necessary and sufficient conditions","/ˈnesəseri ænd səˈfɪʃnt kənˈdɪʃnz/"],["心理接觸","Psychological contact","/ˌsaɪkəˈlɑːdʒɪkl ˈkɑːntækt/"],["知覺","Perception","/pərˈsepʃn/"],["假面具","Mask","/mæsk/"],["僵化","Rigidity","/rɪˈdʒɪdəti/"],["流動","Fluidity","/fluˈɪdəti/"],["歷程","Process","/ˈprɑːses/"],["自我責任","Self-responsibility","/self rɪˌspɑːnsəˈbɪləti/"],["實存的生活","Existential living","/ˌeɡzɪˈstenʃl ˈlɪvɪŋ/"],["自我信賴","Self-trust","/self trʌst/"]],
+mcq:[
+["六個充分必要條件是誰在哪一年提出的？",["Rogers, 1957","Rogers, 1961","Freud, 1957","Ellis, 1961"],0,"講義標示：改變的充分且必要條件 (Rogers, 1957)。七個階段則依 Rogers (1961)。"],
+["第一個條件是？",["治療師一致","兩個人有心理上的接觸","當事人的知覺","治療師同理"],1,"首要條件是雙方有心理上的接觸。"],
+["條件中，對「當事人」狀態的描述是？",["處在不一致或焦慮的狀態","已經完全一致","沒有任何困擾","完全信任治療師"],0,"當事人處在不一致或焦慮的狀態，才有改變的動力。"],
+["下列何者不屬於「治療師給予」的條件？",["一致","無條件的正向關懷","同理性的了解","當事人處在不一致或焦慮的狀態"],3,"最後一項是當事人的狀態，不是治療師給予。"],
+["第六個條件是？",["治療師持續進修","當事人感知到治療師的無條件正向關懷與同理理解","治療師給予建議","當事人完成作業"],1,"態度必須被當事人感受到，才算條件成立。"],
+["「找到自己的三個階段」的順序是？",["願意穿透假面具→對感覺體驗→在體驗中發現自我","在體驗中發現自我→對感覺體驗→穿透假面具","對感覺體驗→在體驗中發現自我→穿透假面具","穿透假面具→發現自我→對感覺體驗"],0,"先放下假面具，再接觸感受，最後在體驗中發現自我。"],
+["七個階段的第一階段是？",["僵化與封閉","開始談論自我","充分而直接地經驗情緒","開放、流動與持續成長"],0,"第一階段：不願談論自己，否認或無法察覺感受。"],
+["「都是主管要求太多，才讓我這麼痛苦」最符合哪一階段？",["第一階段","第二階段","第三階段","第四階段"],1,"第二階段：有限度表達，但主要談外在事件並歸因於外界。"],
+["「我現在真的很難過，也發現自己很怕被拒絕」最符合哪一階段？",["第三階段","第四階段","第五階段","第七階段"],2,"第五階段：更能直接表達當下感受，並承認感受屬於自己。"],
+["下列何者不是美好人生過程的特徵？",["對體驗益發的開放","更為實存的生活","益發信賴自身的反應","益發依賴他人的評價"],3,"美好人生是信賴自身反應，而不是依賴他人評價。"]],
+sc:{q:"大學生阿宏在第三次晤談說：「以前我總是很害怕別人不喜歡我，所以什麼都說好。」他的語氣平淡，像在講別人的故事。依七個階段，他最像在哪一階段？諮商員最佳的回應是？",
+o:["「所以你應該學著說不，我們來練習拒絕。」","「你很早就看見自己總是為了不被討厭而說好；現在說起這件事，你心裡浮現什麼感覺？」","「這只是過去的事，不要再想了。」","「你現在是第三階段，要趕快進到第五階段。」"],a:1,
+e:"最佳解答是 B。阿宏能描述過去的感受，但把感受當成客體，較像第三階段。B 先同理他已看見的內容（理解與接納），再邀請他靠近當下感受，順著歷程前進。A 是指導，替他決定方向；C 是安慰人雷區，否定感受；D 催促階段，違背信任當事人自我步調的立場。"}},
+{t:"單元6 親子溝通與遊戲治療",
+slides:[
+["有條件 vs 無條件的積極關注：情境一「成績考不好」","有條件：媽媽說「你考這麼差，讓我好失望噢！下次如果考到 90 分以上，我才帶你去吃冰淇淋。」孩子小聲回「喔……」。無條件：媽媽說「看到成績也許你自己也有點難過吧？沒關係，這只是一次測驗，我愛你不會因為成績改變。我們一起來看看下次有什麼地方可以做得更好，好嗎？」孩子回「嗯……謝謝媽媽」。","重點：有條件是「表現好才會被愛」，無條件是「你這個人被愛，行為可以一起調整」。"],
+["情境二：打破花瓶","有條件：爸爸說「你怎麼這麼不小心！剛不是提醒過你要注意了嗎！你哥就不會這樣，跟他多學學，我就會比較喜歡跟你玩了。」孩子眼眶紅說「對不起……」。無條件：爸爸說「啊，花瓶破了，沒關係，人沒受傷最重要。每個人都有不小心的時候。我們一起來清理，然後想想以後怎麼避免，好嗎？」孩子點點頭說「嗯，我會小心」。","觀察：有條件的回應常帶有比較與收回愛的訊息，孩子轉而道歉、自責；無條件的回應讓孩子感到安全，願意一起解決問題。"],
+["有助益性的親子溝通訊息","講義整理四個訊息：「我在這裡陪你」（我對你的世界有興趣）、「我聽到你要表達的訊息」、「我瞭解你」、「我關心你」。","例：孩子說「我今天不想去學校」。家長可以說：「你今天心情不太好（聽到），學校可能發生了些事（瞭解），我想聽聽看，我在這裡。」"],
+["遊戲治療的五個技巧","講義列出：追蹤描述、反映式傾聽、鼓勵、回歸責任權、設限。（講義僅列名稱，以下為遊戲治療常見的說明，細節請以課堂為準。）追蹤描述：用話語描述孩子正在做的事；反映式傾聽：反映孩子表達的感受；鼓勵：認可孩子的努力與過程；回歸責任權：把選擇與決定的責任還給孩子；設限：在安全與必要的界線上說明限制。","例：孩子疊積木。追蹤：「你把積木一塊一塊疊高了。」反映：「你好開心。」鼓勵：「你很用心在喋。」回歸責任：「這個你可以自己決定。」"],
+["與兒童建立關係的原則（上）","依 Landreth《遊戲治療建立關係的藝術》整理：我不是無所不知，所以不強求；我需要被愛，所以對孩子開放自己；我想接納自己的童稚，所以以驚奇與敬畿接受孩子啓發；我對童年所知有限，所以允許兒童教導我；我在掙扎中學得最多，所以願意在兒童掙扎時同行；我需要安全庫護所，所以提供這樣的處所；我喜歡被完全接納，所以欣賞孩子原本的樣貌；我會犯錯，所以容忍孩子的人性面。","例：孩子說「這樣才對啦，阿姨你不懂」。大人不急著糾正，說：「那你教教我，怎麼玩才對？」"],
+["與兒童建立關係的原則（下）","我用內斂與表情回應現實，所以要放下自以為對的方式，用孩子的方式進入他們的世界；我會因當答案提供者而有優越感，所以保護兒童免於我這種需要；安全時能經驗更完整的自己，所以互動中保持一致性；只有我能決定自己的人生，所以不指導孩子該過什麼生活；我的知識多來自經驗，所以鼓勵兒童去經驗；希望與生活的意志來自內在，所以確認並肯定孩子的意志與自我；我無法驅走孩子的傷害、恐懼、挫折與失望，所以安撫這些打擊；無助時會害怕，所以以親切、溫和、柔軟之心輕觸孩子的內在世界。","例：孩子把娃娃的頭發剪掉了。大人不急著教訓或指導，先說：「你想試試看剪頭髮。」鼓勵他經驗並一起討論結果。"],
+["結語：信任人的內在成長力量","真正的改變，往往不是變成別人期待的樣子，而是回到那個被壓抑已久的、原本就值得被愛的自己。不只在諮商室，而是在每一個關係裡。","反思：在你的生活中，你能為誰提供這樣「真實且溫暖」的心理空間？"]],
+cards:[["有條件的積極關注","Conditional positive regard","/kənˈdɪʃənl ˈpɑːzətɪv rɪˈɡɑːrd/"],["親子溝通","Parent–child communication","/ˈperənt tʃaɪld kəˌmjuːnɪˈkeɪʃn/"],["遊戲治療","Play therapy","/pleɪ ˈθerəpi/"],["追蹤描述","Tracking","/ˈtrækɪŋ/"],["反映式傾聽","Reflective listening","/rɪˈflektɪv ˈlɪsnɪŋ/"],["鼓勵","Encouragement","/ɪnˈkɜːrɪdʒmənt/"],["回歸責任權","Returning responsibility","/rɪˈtɜːrnɪŋ rɪˌspɑːnsəˈbɪləti/"],["設限","Limit setting","/ˈlɪmɪt ˈsetɪŋ/"],["安全庫護所","Safe haven","/seɪf ˈheɪvn/"],["權威","Authority","/əˈθɔːrəti/"]],
+mcq:[
+["媽媽說「下次考到 90 分以上，我才帶你去吃冰淇淋」，屬於？",["有條件的積極關注","無條件的積極關注","反映式傾聽","設限"],0,"愛與獎勵綁在成績上，是有條件的積極關注。"],
+["下列哪一句最符合無條件的積極關注？",["你考這麼差，讓我好失望","我愛你不會因為成績改變","下次考好我才理你","你就不能學學你哥嗎"],1,"愛不因表現而改變。"],
+["打破花瓶的情境中，爸爸說「你哥就不會這樣」，的問題是？",["具體描述行為","拿手足比較，將喜愛與表現綁在一起","清楚設限","反映感受"],1,"比較與「你這樣我就比較不喜歡」是有條件的訊息。"],
+["無條件的回應「人沒受傷最重要，一起清理」的重點是？",["先責備再安慰","接納孩子，並一起想想以後怎麼避免","當作沒發生","要求孩子保證"],1,"重點是接納加上一起解決。"],
+["下列何者不是有助益性的親子溝通訊息？",["我在這裡陪你","我聽到你要表達的訊息","我瞭解你","我決定你該怎麼做"],3,"四個訊息是陪伴、聽到、瞭解、關心。"],
+["下列何者不在講義列出的遊戲治療技巧中？",["追蹤描述","設限","解釋潛意識象徵","回歸責任權"],2,"五個技巧是追蹤描述、反映式傾聽、鼓勵、回歸責任權、設限。"],
+["孩子疊好積木，治療師說「你把積木一塊一塊疊成高高的塔」，屬於？",["追蹤描述","設限","回歸責任權","安慰"],0,"用話語描述孩子正在做的事。"],
+["對「我無法驅走孩子的傷害、恐懼、挫折和失望」，原則的回應是？",["把傷害全部消除","安撫這些打擊，在孩子掙扎時同行","要孩子堅強","轉移注意力"],1,"無法消除傷害，但可以陪伴。"],
+["在與兒童互動中，下列哪一項符合原則？",["指導孩子該過什麼生活","鼓勵兒童去經驗，並確認孩子的意志","怕犯錯而不讓孩子嘗試","當答案提供者"],1,"原則是鼓勵經驗、確認孩子的意志，而非指導。"],
+["「我並非無所不知，因此我無需強求」的核心精神是？",["治療師不必扮演全知的權威","治療師必須不經學習","孩子不需要指引","治療師不需要資格"],0,"承認自己的有限，才能允許兒童教導我們。"],
+["講義的結語主張，真正的改變是？",["變成別人期待的樣子","回到那個被壓抑已久、原本就值得被愛的自己","完全消除焦慮","服從治療師"],1,"真正的改變不是變成別人期待的樣子。"]],
+sc:{q:"六歲的小安在遊戲治療室不小心把顯料打翻，低著頭小聲說「對不起……」。治療師最佳的回應是？",
+o:["「怎麼這麼不小心！你哥哥就不會這樣。」","「沒關係，我幫你擦乾淨，你去旁邊玩。」","「顯料打翻了，你有點緊張。人沒事最重要，我們一起來清，想想下次可以怎麼放。」","「不要哭，打翻而已，不用難過。」"],a:2,
+e:"最佳解答是 C。C 先追蹤描述事實，反映「緊張」的感受，表達無條件的接納，並把解決的責任一起還給孩子。A 拿哥哥比較，是有條件的關注；B 替孩子做了所有事，沒有回歸責任權；D 否定情緒，屬安慰人雷區。"}}
+];
+const D={'Humanistic psychology':'心理學第三勢力，相信人有向上成長的力量，重視當下經驗與自我選擇。','Behaviorism':'心理學第二勢力，主張行為由學習與環境的獎懲所塑造。','Nondirective therapy':'1940年代的名稱，治療者不指導、不診斷，由當事人自己決定方向。','Client-centered therapy':'1950年代的名稱，以當事人為中心，強調關係與治療條件。','Person-centered therapy':'1980–90年代的名稱，把立場延伸到整個人與所有人際關係。','Actualizing tendency':'人天生朝向成長、獨立與充分發展的內在傾向，像橡實長成大樹。','Fully functioning person':'Rogers 心目中的理想狀態：對經驗開放、信任自己、自我指導。','Incongruence':'自我概念（面具）與真實經驗之間的落差，是心理困擾的核心。','Congruence':'內在真實體驗與外在表現相符，不掩飾、不裝模作樣。','Self-concept':'一個人對「我是誰」的看法，常含社會面具與理想。','Anxiety':'不一致出現時的警報，提醒目前的面具已無法涵蓋真實經驗。','Defense mechanism':'為維持自我概念而啟動的保護方式，會扭曲或否認經驗。','Distortion':'把不符合自我概念的經驗改寫成可接受的樣子，如合理化。','Rationalization':'用看似合理的理由解釋，來避免面對真實感受。','Denial':'拒絕承認真實的感受或經驗，如「我根本不在乎」。','Locus of evaluation':'判斷好壞的依據在誰身上；治療目標是把它收回自己身上。','Openness to experience':'放下防衛，不急著控制新經驗，能接納當下的感受。','Genuineness':'治療者真誠，是另外兩個態度的地基。','Unconditional positive regard':'照你現在的樣子接納你，不帶評價，也不求回報。','Acceptance':'理解並看見對方的感受與存在價值。','Agreement':'同意或認可對方的每個觀點與行為；UPR 不要求這一點。','Accurate empathic understanding':'深入當事人的內在參考架構，體會其感受並傳達出來。','Empathy':'進入對方的世界體會感受，同時保持獨立客觀。','Sympathy':'為對方感到難過，容易停在「好可憐」而失去自己的立場。','Internal frame of reference':'當事人看世界的角度與主觀世界。','As if quality':'好像自己是對方一樣去感受，但不失去「好像」的特質。','Self-disclosure':'治療者適度揭露自己，唯一考量是對當事人有實質幫助。','Open posture':'同理心練習的第一步，用面向對方、身體前傾等姿勢表示專注。','Paraphrasing':'用自己的話簡要敘述來談者說的內容，並核對理解。','Reflection of feeling':'說出對方的情緒，如「聽起來…讓你很憤怒」。','Emotion words':'描述感受的字詞，如憤怒、委屈、無助、孤單等。','Primary-level empathy':'初層次同理心，含內容、感受、理由與意義四部分。','Content':'同理的一部分，複述對方說了什麼事。','Feeling':'同理的一部分，說出對方的情緒感受。','Reason':'同理的一部分，說出感受背後的原因（因為…）。','Meaning':'同理的一部分，點出事件對當事人的意義。','Reassurance':'急著安慰，常變成否認感受，在講義中屬「安慰人雷區」。','Necessary and sufficient conditions':'Rogers (1957) 的六個條件，持續存在即會促成建設性改變。','Psychological contact':'兩人在心理上確實有接觸，是第一個條件。','Perception':'當事人要感知到治療者的關懷與同理，條件才成立。','Mask':'為了符合期待而戴上的外在樣子，與真實感受不一致。','Rigidity':'僵化封閉，如第一階段不願談自己、看不到感受。','Fluidity':'流動，如第七階段能彈性調整自我概念並持續成長。','Process':'歷程，強調成長是不斷流動變化的過程而非終點。','Self-responsibility':'願意為自己的生活負責，在第四階段開始萌生。','Existential living':'更為實存的生活，活在當下而非被固定框架限制。','Self-trust':'益發信賴自身的反應與經驗。','Conditional positive regard':'表現好才被愛，把關愛與條件綁在一起。','Parent–child communication':'親子之間傳遞「我陪你、我聽到、我懂你、我關心你」的互動。','Play therapy':'以遊戲作為孩子的語言，在安全關係中表達與成長。','Tracking':'用話語描述孩子正在做的事，如「你把積木疊高了」。','Reflective listening':'反映孩子表達的感受，如「你好開心」。','Encouragement':'肯定孩子的努力與過程，而非只稱讚結果。','Returning responsibility':'把選擇與決定的責任還給孩子，不替他做。','Limit setting':'在安全與必要處說明界線，同時接納孩子的感受。','Safe haven':'讓孩子感到安全、可以做自己的地方。','Authority':'扮演提供答案的角色；與兒童互動時要避免被這種需要驅動。'};
+let ui=0,tab="slides";
+const $=id=>document.getElementById(id),L=["講義內容","字卡","選擇題","情境題"],K=["slides","cards","mcq","sc"];
+function nav(){$("units").innerHTML=U.map((u,i)=>`<button class="${i==ui?'on':''}" onclick="ui=${i};go()">${u.t}</button>`).join("")+`<button class="${ui<0?'on':''}" onclick="ui=-1;go()">📄 期刊閱讀</button>`;
+$("tabs").innerHTML=ui<0?'':K.map((k,i)=>`<button class="${k==tab?'on':''}" onclick="tab='${k}';go()">${L[i]}</button>`).join("")}
+function say(t){try{const s=new SpeechSynthesisUtterance(t);s.lang="en-US";s.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(s)}catch(e){}}
+function pick(b,qi,oi,a,kind){const box=b.parentElement;[...box.querySelectorAll(".opt")].forEach((x,i)=>{x.disabled=true;if(i==a)x.classList.add("ok")});if(oi!=a)b.classList.add("no");box.querySelector(".exp").classList.add("show");box.querySelector(".fb").textContent=oi==a?"✔ 答對了":"✘ 答錯了";if(kind=="q"){S[ui]=S[ui]||{};S[ui][qi]=oi==a;const n=Object.values(S[ui]).filter(Boolean).length;$("score").textContent=`目前答對 ${n} / ${Object.keys(S[ui]).length} 題`}}
+let S={};
+const PS=`This study translated and validated a simplified Chinese version of the Strathclyde Inventory (C-SI-20), a 20-item self-report questionnaire that measures the fully functioning person described in Carl Rogers’s theory. In the first sample, 450 Chinese-speaking adults completed the questionnaire so that the researchers could check its internal consistency, test–retest reliability and construct validity. In the second sample, 226 adults provided data for confirmatory factor analysis and exploratory structural equation modeling. Among the models compared, the bifactor model fit best, which suggests that the scale captures one general factor and two more specific subdimensions. The authors therefore conclude that the total score can serve as a valid indicator of optimal psychological functioning, while the scale remains multidimensional. Overall, the instrument appears reliable and valid for Chinese-speaking populations and supports culturally informed research on person-centered theory.`.replace(/\[\[(.+?)\|(.+?)\]\]/g,'');
+const VW=[['translated','翻譯'],['validated','驗證'],['self-report','自陳式（自己填答）'],['measures','測量'],['fully functioning person','充分發揮功能的人'],['internal consistency','內部一致性'],['test–retest reliability','重測信度'],['construct validity','建構效度'],['confirmatory factor analysis','驗證性因素分析'],['exploratory structural equation modeling','探索性結構方程模型'],['bifactor','雙因子'],['subdimensions','次維度'],['indicator','指標'],['optimal','最佳的'],['multidimensional','多向度的'],['reliable','可靠的'],['culturally informed','考量文化脈絡的']];
+const RQ=[['What is the main purpose of the study?',['To create a new treatment for anxiety','To translate and validate a Chinese version of a scale measuring the fully functioning person','To compare therapists in different countries','To test a new medication'],1,'本研究把 20 題的 Strathclyde Inventory 翻成簡體中文並驗證，用來測量 Rogers 理論中的「充分發揮功能的人」。'],['How many adults took part in the first sample?',['226','450','20','1,000'],1,'第一個樣本是 450 位華語成人；226 位是第二個樣本。'],['Which analyses were used in the second sample?',['Interviews only','Confirmatory factor analysis and exploratory structural equation modeling','A drug trial','A single case study'],1,'第二個樣本做了驗證性因素分析 (CFA) 與探索性結構方程模型 (ESEM)。'],['Which model fit the data best?',['A single-factor model','A bifactor ESEM model','A two-group model','A simple regression'],1,'雙因子 ESEM 模型適配最佳。'],['What does the bifactor result suggest?',['The scale has no clear structure','The scale has one general factor and two specific subdimensions','The scale has twenty separate factors','The scale cannot be used'],1,'表示量表既有一個總因子，也有兩個較具體的次維度。'],['Which conclusion does the passage support?',['The total score is a valid indicator of optimal functioning, though the scale is multidimensional','The scale is unreliable for Chinese speakers','The scale is only for children','The scale replaces counseling'],0,'作者認為總分可作為有效指標，同時也承認量表的多向度性質。'],['In the passage, the word reliable most nearly means:',['consistent and dependable','expensive','emotional','temporary'],0,'reliable 指穩定、可信賴，與重測信度、內部一致性的概念相呼應。']];
+function tg(e){e.classList.toggle('open')}
+function allTr(){const a=[...document.querySelectorAll('.vw')],o=a.some(x=>!x.classList.contains('open'));a.forEach(x=>x.classList.toggle('open',o))}
+function zz(){$('zh').classList.toggle('show')}
+function reading(){if(ri==1)return reading2();let p=PS;VW.forEach(w=>{p=p.replace(w[0],`<span class='vw' data-t='${w[1]}' onclick='tg(this)'>${w[0]}</span>`)});
+$('view').innerHTML=sw()+`<div class='card'><h2>期刊閱讀：華語版「充分發揮功能的人」量表</h2><div class='sub'>Chen, S., Stephen, S., He, S., & Joseph, S. Person-Centered & Experiential Psychotherapies, 25(2), 263–284. <a href='https://doi.org/10.1080/14779757.2025.2549058' target='_blank' rel='noopener'>DOI 原文連結</a></div><p class='sub'>下方英文是依該文摘要重點改寫的短文，並非原摘要全文；點虛線單字可看中文翻譯。與單元1、2的「充分發揮功能的人」「對經驗開放」相呼應。</p><button onclick='allTr()'>全部顯示／隱藏翻譯</button> <button onclick='zz()'>摘要中文說明</button><div class='ps card'>${p}</div><div id='zh' class='exp card'><p><b>研究目的：</b>把 20 題的 Strathclyde Inventory 翻成簡體中文並驗證，用來測量 Rogers 理論中「充分發揮功能的人」。</p><p><b>方法：</b>樣本1有 450 位華語成人，檢驗內部一致性、重測信度與建構效度；樣本2有 226 位成人，進行驗證性因素分析與探索性結構方程模型。</p><p><b>結果：</b>雙因子 ESEM 模型適配最佳，量表有一個總因子與兩個次維度；總分可作為「最佳心理功能」的有效指標，同時量表具多向度性質。</p><p><b>結論：</b>C-SI-20 在華語族群中可靠且有效，有助於考量文化脈絡的個人中心理論研究。</p></div></div><h2>閱讀理解題（7 題）</h2>`+RQ.map((q,i)=>`<div class='card'><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<button class='opt' onclick='pick(this,${i},${j},${q[2]},0)'>${'ABCD'[j]}. ${o}</button>`).join('')}<b class='fb'></b><div class='exp'>解析：${q[3]}</div></div>`).join('')}
+let ri=0;
+function sw(){return `<div class='bar'><button class='${ri==0?'on':''}' onclick='ri=0;go()'>文章1：華語量表</button><button class='${ri==1?'on':''}' onclick='ri=1;go()'>文章2：烏克蘭治療師</button></div>`}
+const PS2=`Person-centered psychotherapists in Ukraine appear to hold a nuanced understanding of several core concepts of the approach. To explore how they view the therapeutic process, the researchers carried out a qualitative study. Nineteen Ukrainian person-centered psychotherapists were asked to read extracts from four published therapy transcripts and to discuss the features of therapeutic practice that the extracts showed. In their comments, the participants repeatedly relied on concepts such as directivity, empathy and congruence to describe what was happening in the sessions. Because the design was qualitative, the authors could examine the essence of the therapeutic process as seen through the experiences, worldview and context of these therapists. The authors also hoped that the study would encourage further discussion in Ukraine about what happens in individual psychotherapy.`;
+const VW2=[['psychotherapists','心理治療師'],['nuanced','細膩的、有層次的'],['core concepts','核心概念'],['qualitative','質性的'],['extracts','摘錄片段'],['transcripts','逐字稿'],['participants','參與者'],['directivity','指導性'],['empathy','同理心'],['congruence','一致性'],['worldview','世界觀'],['context','脈絡、情境']];
+const RQ2=[['How many Ukrainian therapists took part in the study?',['4','19','25','100'],1,'研究參與者是 19 位烏克蘭個人中心治療師；4 是他們閱讀的逐字稿數量。'],['What were the participants asked to read?',['Extracts from four published therapy transcripts','Complete textbooks','Clients’ diaries','Exam papers'],0,'他們閱讀四份已發表治療逐字稿的摘錄，再討論其中的治療特徵。'],['What kind of research design was used?',['A randomized drug trial','A qualitative study','A survey of 1,000 clients','A meta-analysis'],1,'這是一項質性研究，重視參與者的經驗與看法。'],['Which concepts did participants use to describe the sessions?',['Directivity, empathy and congruence','Transference, id and ego','Reinforcement and punishment','Mindfulness only'],0,'參與者常用「指導性、同理、一致」等個人中心概念，與單元3的三大核心態度相呼應。'],['What did the qualitative approach allow the authors to examine?',['The cost of therapy','The essence of the therapeutic process as seen through therapists’ experience, worldview and context','The effect of medication','Clients’ income'],1,'質性研究讓作者能從治療師的經驗、世界觀與脈絡看治療歷程的本質。'],['What additional hope did the authors express?',['To replace therapists with scripts','To encourage discussion in Ukraine about individual psychotherapy','To shorten therapist training','To ban transcripts'],1,'作者也希望促進烏克蘭對個別心理治療歷程的討論。'],['In the passage, nuanced most nearly means:',['subtle and detailed','careless','loud','fixed'],0,'nuanced 指細膩、有層次，表示治療師對概念的理解不粗糙。']];
+function rd(P,V,Q,H,Z){let p=P;V.forEach(w=>{p=p.replace(w[0],`<span class='vw' data-t='${w[1]}' onclick='tg(this)'>${w[0]}</span>`)});$('view').innerHTML=sw()+`<div class='card'><h2>${H[0]}</h2><div class='sub'>${H[1]}</div><p class='sub'>${H[2]}</p><button onclick='allTr()'>全部顯示／隱藏翻譯</button> <button onclick='zz()'>摘要中文說明</button><div class='ps card'>${p}</div><div id='zh' class='exp card'>${Z}</div></div><h2>閱讀理解題（${Q.length} 題）</h2>`+Q.map((q,i)=>`<div class='card'><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<button class='opt' onclick='pick(this,${i},${j},${q[2]},0)'>${'ABCD'[j]}. ${o}</button>`).join('')}<b class='fb'></b><div class='exp'>解析：${q[3]}</div></div>`).join('')}
+function reading2(){rd(PS2,VW2,RQ2,['期刊閱讀：烏克蘭個人中心治療師如何看治療歷程','Bayer, O., Hrysenko, N., Sheviakova, O., & Haugh, S. Person-Centered & Experiential Psychotherapies, 25(2), 246–262. <a href=\'https://doi.org/10.1080/14779757.2025.2545988\' target=\'_blank\' rel=\'noopener\'>DOI 原文連結</a>','下方英文是依該文摘要重點改寫的短文，並非原摘要全文；點虛線單字可看中文翻譯。與單元3的一致、同理、非指導相呼應。'],'<p><b>研究目的：</b>了解烏克蘭的個人中心心理治療師如何理解治療歷程，並希望促進烏克蘭對個別心理治療歷程的討論。</p><p><b>方法：</b>質性研究。19 位烏克蘭個人中心治療師閱讀四份已發表治療逐字稿的摘錄，再討論其中呈現的治療實務特徵。</p><p><b>結果：</b>參與者在描述治療時，常使用「指導性、同理、一致」等概念，顯示他們對部分核心概念有細膩的理解。</p><p><b>意義：</b>質性研究讓作者能從烏克蘭治療師的經驗、世界觀與脈絡，看治療歷程的本質。</p>')}
+function go(){nav();if(ui<0)return reading();const u=U[ui],v=$("view");
+if(tab=="slides")v.innerHTML=u.slides.map((s,i)=>`<div class="card"><h2>${i+1}. ${s[0]}</h2><div>${s[1]}</div><div class="ex">${s[2]}</div></div>`).join("");
+else if(tab=="cards")v.innerHTML=`<p class="sub">點卡片翻面；按 🔊 聽英文發音。</p><div class="grid">`+u.cards.map((c,i)=>`<div class="card fc" onclick="this.querySelector('.bk').hidden=!this.querySelector('.bk').hidden"><b>${c[0]}</b><div class="bk" hidden><b>${c[1]}</b><div class="ipa">${c[2]}</div><div class="def">${D[c[1]]||''}</div><button onclick="event.stopPropagation();say('${c[1]}')">🔊 發音</button></div></div>`).join("")+`</div>`;
+else if(tab=="mcq")v.innerHTML=`<div class="sub" id="score">目前答對 0 / 0 題</div>`+u.mcq.map((q,i)=>`<div class="card"><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<button class="opt" onclick="pick(this,${i},${j},${q[2]},'q')">${"ABCD"[j]}. ${o}</button>`).join("")}<b class="fb"></b><div class="exp">解析：${q[3]}</div></div>`).join("");
+else v.innerHTML=`<div class="card"><h2>情境題</h2><p>${u.sc.q}</p>${u.sc.o.map((o,j)=>`<button class="opt" onclick="pick(this,0,${j},${u.sc.a},'s')">${"ABCD"[j]}. ${o}</button>`).join("")}<b class="fb"></b><div class="exp">最佳解答與解析：${u.sc.e}</div></div>`}
+go();
+</script></body></html>
